@@ -5,11 +5,11 @@ const STORY_MS = 3800;
 const FAQ = [
   [
     "ما هو وصّل؟",
-    "تطبيق يجمع الرحلات وطلبات التوصيل في مكان واحد، مع تطبيق مخصص للكباتن."
+    "تطبيق يجمع الرحلات وطلبات التوصيل في مكان واحد، مع تطبيق مخصص للسائقين."
   ],
   [
     "كيف أحجز رحلة أو أطلب توصيلاً؟",
-    "اختر رحلة أو توصيل، حدّد من أين وإلى أين، ثم أكّد طلبك وتابع الكابتن على الشاشة."
+    "اختر رحلة أو توصيل، حدّد من أين وإلى أين، ثم أكّد طلبك وتابع السائق على الشاشة."
   ],
   [
     "ما طرق الدفع المتاحة؟",
@@ -20,7 +20,7 @@ const FAQ = [
     "نعم، يمكنك إلغاء الرحلة أو الطلب من شاشة المتابعة."
   ],
   [
-    "كيف أنضم ككابتن؟",
+    "كيف أنضم كسائق؟",
     "سجّل بياناتك وبيانات مركبتك وارفع مستنداتك، ثم تراجعها الإدارة قبل اعتماد حسابك."
   ]
 ];
@@ -110,10 +110,10 @@ export default function App() {
               <div className="hero-copy">
                 <span className="badge"><i></i>رحلات وتوصيل في تطبيق واحد</span>
                 <h1><span className="w" style={{ '--i': 0 }}>رحلتك</span> <span className="w" style={{ '--i': 1 }}>وطلبك…</span><br /><em className="w" style={{ '--i': 2 }}>أقرب لك</em> <span className="w" style={{ '--i': 3 }}>دائماً</span></h1>
-                <p className="lead">احجز رحلتك أو اطلب توصيلك في خطوات بسيطة، وتابع الكابتن لحظة بلحظة حتى الوصول.</p>
+                <p className="lead">احجز رحلتك أو اطلب توصيلك في خطوات بسيطة، وتابع السائق لحظة بلحظة حتى الوصول.</p>
                 <div className="cta-row">
                   <a className="btn btn-primary" href="#download">حمّل التطبيق مجاناً</a>
-                  <a className="btn btn-quiet" href="#apps" onClick={() => setTab('captain')}>انضم ككابتن</a>
+                  <a className="btn btn-quiet" href="#apps" onClick={() => setTab('captain')}>انضم كسائق</a>
                 </div>
                 <div className="story" role="tablist" aria-label="جولة سريعة في التطبيق">
                   <button key={story === 0 ? 'on0-' + tick : 'off0'} className={`st${story === 0 ? ' on' : ''}`} role="tab" aria-selected={story === 0} aria-label="اطلب رحلتك" onClick={() => goStory(0)}><i></i></button>
@@ -126,8 +126,8 @@ export default function App() {
               <div className="stage" ref={stageRef}>
                 <div className="rings" aria-hidden="true"><i></i><i></i><i></i></div>
                 <div className="phone main"><img className={`slide${story === 0 ? ' on' : ''}`} src="assets/rider-ride.jpg" width="540" height="1178" alt="شاشة طلب رحلة في تطبيق وصّل" /><img className={`slide${story === 1 ? ' on' : ''}`} src="assets/rider-order.jpg" width="540" height="1178" alt="شاشة طلب توصيل في تطبيق وصّل" /><img className={`slide${story === 2 ? ' on' : ''}`} src="assets/rider-pay.jpg" width="540" height="1178" alt="شاشة طرق الدفع في تطبيق وصّل" /></div>
-                <div className="phone back"><img src="assets/drv-online.jpg" width="540" height="1178" alt="الشاشة الرئيسية في تطبيق الكابتن" /></div>
-                <div className="chip c1"><svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="13" fill="#A3FF3B"/><path d="M7.5 13.5l3.7 3.7 7.3-8" fill="none" stroke="#0F1113" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/></svg>تتبّع كابتنك لحظة بلحظة</div>
+                <div className="phone back"><img src="assets/drv-online.jpg" width="540" height="1178" alt="الشاشة الرئيسية في تطبيق السائق" /></div>
+                <div className="chip c1"><svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="13" fill="#A3FF3B"/><path d="M7.5 13.5l3.7 3.7 7.3-8" fill="none" stroke="#0F1113" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/></svg>تتبّع سائقك لحظة بلحظة</div>
                 <div className="chip c2"><svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="13" fill="#A3FF3B"/><path d="M7.5 13.5l3.7 3.7 7.3-8" fill="none" stroke="#0F1113" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/></svg>ادفع نقداً أو عبر إنستا باي</div>
               </div>
             </div>
@@ -153,7 +153,7 @@ export default function App() {
                 </article>
                 <article className="card reveal">
                   <div className="art"><img src="assets/art-earnings.svg" width="280" height="248" alt="" /></div>
-                  <h3>أرباح أوضح للكباتن</h3>
+                  <h3>أرباح أوضح للسائقين</h3>
                   <p>تابع أرباحك وعمولة المنصة، واطلب سحب رصيدك من التطبيق.</p>
                 </article>
               </div>
@@ -170,8 +170,8 @@ export default function App() {
               <ol className="steps" ref={railRef}>
                 <li className="step reveal"><span className="num">١</span><div><h3>سجّل وابدأ</h3><p>أنشئ حسابك أو سجّل دخولك في دقائق.</p></div></li>
                 <li className="step reveal"><span className="num">٢</span><div><h3>اختر رحلة أو توصيل</h3><p>حدّد من أين وإلى أين، وأضف تفاصيل الطلب.</p></div></li>
-                <li className="step reveal"><span className="num">٣</span><div><h3>تابع كابتنك</h3><p>شريط التقدم يوضّح كل مرحلة حتى الوصول.</p></div></li>
-                <li className="step reveal"><span className="num">٤</span><div><h3>ادفع وقيّم</h3><p>ادفع نقداً أو عبر إنستا باي، ثم قيّم الكابتن.</p></div></li>
+                <li className="step reveal"><span className="num">٣</span><div><h3>تابع سائقك</h3><p>شريط التقدم يوضّح كل مرحلة حتى الوصول.</p></div></li>
+                <li className="step reveal"><span className="num">٤</span><div><h3>ادفع وقيّم</h3><p>ادفع نقداً أو عبر إنستا باي، ثم قيّم السائق.</p></div></li>
               </ol>
             </div>
           </section>
@@ -180,13 +180,13 @@ export default function App() {
             <div className="wrap">
               <div className="sec-head reveal">
                 <span className="eyebrow">تطبيقان</span>
-                <h2>تطبيق للراكب وتطبيق للكابتن</h2>
+                <h2>تطبيق للراكب وتطبيق للسائق</h2>
                 <p>كل طرف يرى ما يحتاجه فقط، بنفس اللغة البصرية البسيطة.</p>
               </div>
               <div className="apps-head">
                 <div className="tabs" role="tablist" aria-label="اختر التطبيق">
                   <button className="tab" role="tab" id="tab-rider" aria-controls="panel-rider" aria-selected={tab === 'rider'} onClick={() => setTab('rider')}>تطبيق الراكب</button>
-                  <button className="tab" role="tab" id="tab-captain" aria-controls="panel-captain" aria-selected={tab === 'captain'} onClick={() => setTab('captain')}>تطبيق الكابتن</button>
+                  <button className="tab" role="tab" id="tab-captain" aria-controls="panel-captain" aria-selected={tab === 'captain'} onClick={() => setTab('captain')}>تطبيق السائق</button>
                 </div>
               </div>
       
@@ -196,9 +196,9 @@ export default function App() {
                   <p>احجز رحلة أو اطلب توصيل، وتابع كل مرحلة على الشاشة.</p>
                   <ul className="ticks">
                     <li>رحلات وطلبات توصيل</li>
-                    <li>تتبّع الكابتن لحظة بلحظة</li>
+                    <li>تتبّع السائق لحظة بلحظة</li>
                     <li>الدفع نقداً أو إنستا باي أو المحافظ الإلكترونية</li>
-                    <li>تقييم الكابتن بعد الرحلة</li>
+                    <li>تقييم السائق بعد الرحلة</li>
                   </ul>
                   <a className="btn btn-primary" href="#download" style={{ alignSelf: 'flex-start' }}>حمّل تطبيق الراكب</a>
                 </div>
@@ -219,12 +219,12 @@ export default function App() {
                     <li>طلب سحب الرصيد</li>
                     <li>رفع المستندات ومتابعة حالة الاعتماد</li>
                   </ul>
-                  <a className="btn btn-primary" href="#download" style={{ alignSelf: 'flex-start' }}>انضم ككابتن</a>
+                  <a className="btn btn-primary" href="#download" style={{ alignSelf: 'flex-start' }}>انضم كسائق</a>
                 </div>
                 <div className="gallery">
-                  <div className="phone"><img loading="lazy" src="assets/drv-earnings.jpg" width="540" height="1178" alt="شاشة الأرباح في تطبيق الكابتن" /></div>
-                  <div className="phone"><img loading="lazy" src="assets/drv-online.jpg" width="540" height="1178" alt="الشاشة الرئيسية في تطبيق الكابتن" /></div>
-                  <div className="phone"><img loading="lazy" src="assets/drv-trips.jpg" width="540" height="1178" alt="شاشة الرحلات في تطبيق الكابتن" /></div>
+                  <div className="phone"><img loading="lazy" src="assets/drv-earnings.jpg" width="540" height="1178" alt="شاشة الأرباح في تطبيق السائق" /></div>
+                  <div className="phone"><img loading="lazy" src="assets/drv-online.jpg" width="540" height="1178" alt="الشاشة الرئيسية في تطبيق السائق" /></div>
+                  <div className="phone"><img loading="lazy" src="assets/drv-trips.jpg" width="540" height="1178" alt="شاشة الرحلات في تطبيق السائق" /></div>
                 </div>
               </div>
             </div>
