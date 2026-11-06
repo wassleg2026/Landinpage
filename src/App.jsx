@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-const STORY = ["ابحث عن كابتن","تابع لحظة بلحظة","ادفع وقيّم"];
+const STORY = ["اطلب رحلتك","اطلب توصيل","وادفع كما تحب"];
 const STORY_MS = 3800;
 const FAQ = [
   [
@@ -13,7 +13,7 @@ const FAQ = [
   ],
   [
     "ما طرق الدفع المتاحة؟",
-    "يمكنك الدفع نقداً أو عبر المحافظ الإلكترونية (إنستا باي)."
+    "يمكنك الدفع نقداً أو عبر إنستا باي أو المحافظ الإلكترونية."
   ],
   [
     "هل أستطيع إلغاء طلبي؟",
@@ -93,7 +93,7 @@ export default function App() {
       <div dir="rtl" lang="ar">
         <header className={`site-header${scrolled ? ' scrolled' : ''}`} id="top">
           <div className="wrap bar">
-            <a className="logo" href="#top" aria-label="وصّل"><img src="assets/logo.svg" width="108" height="40" alt="وصّل" /></a>
+            <a className="logo" href="#top" aria-label="وصّل"><img src="assets/logo.png" width="120" height="48" alt="وصّل" /></a>
             <nav className="nav" aria-label="التنقل الرئيسي">
               <a href="#features">المميزات</a>
               <a href="#how">كيف يعمل</a>
@@ -116,17 +116,17 @@ export default function App() {
                   <a className="btn btn-quiet" href="#apps" onClick={() => setTab('captain')}>انضم ككابتن</a>
                 </div>
                 <div className="story" role="tablist" aria-label="جولة سريعة في التطبيق">
-                  <button key={story === 0 ? 'on0-' + tick : 'off0'} className={`st${story === 0 ? ' on' : ''}`} role="tab" aria-selected={story === 0} aria-label="ابحث عن كابتن" onClick={() => goStory(0)}><i></i></button>
-                  <button key={story === 1 ? 'on1-' + tick : 'off1'} className={`st${story === 1 ? ' on' : ''}`} role="tab" aria-selected={story === 1} aria-label="تابع لحظة بلحظة" onClick={() => goStory(1)}><i></i></button>
-                  <button key={story === 2 ? 'on2-' + tick : 'off2'} className={`st${story === 2 ? ' on' : ''}`} role="tab" aria-selected={story === 2} aria-label="ادفع وقيّم" onClick={() => goStory(2)}><i></i></button>
+                  <button key={story === 0 ? 'on0-' + tick : 'off0'} className={`st${story === 0 ? ' on' : ''}`} role="tab" aria-selected={story === 0} aria-label="اطلب رحلتك" onClick={() => goStory(0)}><i></i></button>
+                  <button key={story === 1 ? 'on1-' + tick : 'off1'} className={`st${story === 1 ? ' on' : ''}`} role="tab" aria-selected={story === 1} aria-label="اطلب توصيل" onClick={() => goStory(1)}><i></i></button>
+                  <button key={story === 2 ? 'on2-' + tick : 'off2'} className={`st${story === 2 ? ' on' : ''}`} role="tab" aria-selected={story === 2} aria-label="وادفع كما تحب" onClick={() => goStory(2)}><i></i></button>
                   <span className="story-cap">{STORY[story]}</span>
                 </div>
               </div>
       
               <div className="stage" ref={stageRef}>
                 <div className="rings" aria-hidden="true"><i></i><i></i><i></i></div>
-                <div className="phone main"><img className={`slide${story === 0 ? ' on' : ''}`} src="assets/rider-search.png" width="390" height="844" alt="شاشة البحث عن كابتن في تطبيق وصّل" /><img className={`slide${story === 1 ? ' on' : ''}`} src="assets/rider-track.png" width="390" height="844" alt="شاشة تتبّع الكابتن في تطبيق وصّل" /><img className={`slide${story === 2 ? ' on' : ''}`} src="assets/rider-pay.png" width="390" height="982" alt="شاشة الدفع في تطبيق وصّل" /></div>
-                <div className="phone back"><img src="assets/drv-home.png" width="390" height="844" alt="الشاشة الرئيسية في تطبيق الكابتن" /></div>
+                <div className="phone main"><img className={`slide${story === 0 ? ' on' : ''}`} src="assets/rider-ride.jpg" width="540" height="1178" alt="شاشة طلب رحلة في تطبيق وصّل" /><img className={`slide${story === 1 ? ' on' : ''}`} src="assets/rider-order.jpg" width="540" height="1178" alt="شاشة طلب توصيل في تطبيق وصّل" /><img className={`slide${story === 2 ? ' on' : ''}`} src="assets/rider-pay.jpg" width="540" height="1178" alt="شاشة طرق الدفع في تطبيق وصّل" /></div>
+                <div className="phone back"><img src="assets/drv-online.jpg" width="540" height="1178" alt="الشاشة الرئيسية في تطبيق الكابتن" /></div>
                 <div className="chip c1"><svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="13" fill="#A3FF3B"/><path d="M7.5 13.5l3.7 3.7 7.3-8" fill="none" stroke="#0F1113" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/></svg>تتبّع كابتنك لحظة بلحظة</div>
                 <div className="chip c2"><svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="13" fill="#A3FF3B"/><path d="M7.5 13.5l3.7 3.7 7.3-8" fill="none" stroke="#0F1113" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/></svg>ادفع نقداً أو عبر إنستا باي</div>
               </div>
@@ -197,15 +197,15 @@ export default function App() {
                   <ul className="ticks">
                     <li>رحلات وطلبات توصيل</li>
                     <li>تتبّع الكابتن لحظة بلحظة</li>
-                    <li>الدفع نقداً أو عبر المحافظ الإلكترونية</li>
+                    <li>الدفع نقداً أو إنستا باي أو المحافظ الإلكترونية</li>
                     <li>تقييم الكابتن بعد الرحلة</li>
                   </ul>
                   <a className="btn btn-primary" href="#download" style={{ alignSelf: 'flex-start' }}>حمّل تطبيق الراكب</a>
                 </div>
                 <div className="gallery">
-                  <div className="phone"><img loading="lazy" src="assets/rider-pay.png" width="390" height="982" alt="شاشة الدفع في تطبيق الراكب" /></div>
-                  <div className="phone"><img loading="lazy" src="assets/rider-track.png" width="390" height="844" alt="شاشة التتبّع في تطبيق الراكب" /></div>
-                  <div className="phone"><img loading="lazy" src="assets/rider-search.png" width="390" height="844" alt="شاشة البحث عن كابتن" /></div>
+                  <div className="phone"><img loading="lazy" src="assets/rider-pay.jpg" width="540" height="1178" alt="شاشة طرق الدفع في تطبيق وصّل" /></div>
+                  <div className="phone"><img loading="lazy" src="assets/rider-ride.jpg" width="540" height="1178" alt="شاشة طلب رحلة في تطبيق وصّل" /></div>
+                  <div className="phone"><img loading="lazy" src="assets/rider-order.jpg" width="540" height="1178" alt="شاشة طلب توصيل في تطبيق وصّل" /></div>
                 </div>
               </div>
       
@@ -222,9 +222,9 @@ export default function App() {
                   <a className="btn btn-primary" href="#download" style={{ alignSelf: 'flex-start' }}>انضم ككابتن</a>
                 </div>
                 <div className="gallery">
-                  <div className="phone"><img loading="lazy" src="assets/drv-earnings.png" width="390" height="844" alt="شاشة الأرباح في تطبيق الكابتن" /></div>
-                  <div className="phone"><img loading="lazy" src="assets/drv-home.png" width="390" height="844" alt="الشاشة الرئيسية في تطبيق الكابتن" /></div>
-                  <div className="phone"><img loading="lazy" src="assets/drv-request.png" width="390" height="844" alt="شاشة طلب جديد في تطبيق الكابتن" /></div>
+                  <div className="phone"><img loading="lazy" src="assets/drv-earnings.jpg" width="540" height="1178" alt="شاشة الأرباح في تطبيق الكابتن" /></div>
+                  <div className="phone"><img loading="lazy" src="assets/drv-online.jpg" width="540" height="1178" alt="الشاشة الرئيسية في تطبيق الكابتن" /></div>
+                  <div className="phone"><img loading="lazy" src="assets/drv-trips.jpg" width="540" height="1178" alt="شاشة الرحلات في تطبيق الكابتن" /></div>
                 </div>
               </div>
             </div>
@@ -263,7 +263,7 @@ export default function App() {
       
         <footer>
           <div className="wrap foot">
-            <div className="brand"><img src="assets/logo.svg" width="91" height="34" alt="وصّل" /><span>أقرب لك .. دائماً</span></div>
+            <div className="brand"><img src="assets/logo.png" width="100" height="40" alt="وصّل" /><span>أقرب لك .. دائماً</span></div>
             <span>© <span>{new Date().getFullYear()}</span> وصّل. جميع الحقوق محفوظة.</span>
           </div>
         </footer>
