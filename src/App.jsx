@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
 const STORY = ["اطلب رحلتك","اطلب توصيل","وادفع كما تحب"];
+const STORE = {
+  rider: 'https://play.google.com/store/apps/details?id=com.wassl.customer',
+  driver: 'https://play.google.com/store/apps/details?id=com.wassl.driver',
+};
 const STORY_MS = 3800;
 const FAQ = [
   [
@@ -34,6 +38,15 @@ export default function App() {
   const heroRef = useRef(null);
   const stageRef = useRef(null);
   const railRef = useRef(null);
+
+  const [pick, setPick] = useState(false);
+  useEffect(() => {
+    if (!pick) return undefined;
+    const onKey = (e) => { if (e.key === 'Escape') setPick(false); };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = ''; };
+  }, [pick]);
 
   const goStory = (i) => { setStory(i); setTick((t) => t + 1); };
 
@@ -100,7 +113,7 @@ export default function App() {
               <a href="#apps">التطبيقان</a>
               <a href="#faq">الأسئلة الشائعة</a>
             </nav>
-            <a className="btn btn-primary btn-sm" href="#download">حمّل التطبيق</a>
+            <button type="button" className="btn btn-primary btn-sm" onClick={() => setPick(true)}>حمّل التطبيق</button>
           </div>
         </header>
       
@@ -112,7 +125,7 @@ export default function App() {
                 <h1><span className="w" style={{ '--i': 0 }}>رحلتك</span> <span className="w" style={{ '--i': 1 }}>وطلبك…</span><br /><em className="w" style={{ '--i': 2 }}>أقرب لك</em> <span className="w" style={{ '--i': 3 }}>دائماً</span></h1>
                 <p className="lead">احجز رحلتك أو اطلب توصيلك في خطوات بسيطة، وتابع السائق لحظة بلحظة حتى الوصول.</p>
                 <div className="cta-row">
-                  <a className="btn btn-primary" href="#download">حمّل التطبيق مجاناً</a>
+                  <button type="button" className="btn btn-primary" onClick={() => setPick(true)}>حمّل التطبيق مجاناً</button>
                   <a className="btn btn-quiet" href="#apps" onClick={() => setTab('captain')}>انضم كسائق</a>
                 </div>
                 <div className="story" role="tablist" aria-label="جولة سريعة في التطبيق">
@@ -200,7 +213,7 @@ export default function App() {
                     <li>الدفع نقداً أو إنستا باي أو المحافظ الإلكترونية</li>
                     <li>تقييم السائق بعد الرحلة</li>
                   </ul>
-                  <a className="btn btn-primary" href="#download" style={{ alignSelf: 'flex-start' }}>حمّل تطبيق الراكب</a>
+                  <a className="btn btn-primary" href={STORE.rider} target="_blank" rel="noopener noreferrer" style={{ alignSelf: 'flex-start' }}>حمّل تطبيق الراكب</a>
                 </div>
                 <div className="gallery">
                   <div className="phone"><img loading="lazy" src="assets/rider-pay.jpg" width="540" height="1178" alt="شاشة طرق الدفع في تطبيق وصّل" /></div>
@@ -219,7 +232,7 @@ export default function App() {
                     <li>طلب سحب الرصيد</li>
                     <li>رفع المستندات ومتابعة حالة الاعتماد</li>
                   </ul>
-                  <a className="btn btn-primary" href="#download" style={{ alignSelf: 'flex-start' }}>انضم كسائق</a>
+                  <a className="btn btn-primary" href={STORE.driver} target="_blank" rel="noopener noreferrer" style={{ alignSelf: 'flex-start' }}>حمّل تطبيق السائق</a>
                 </div>
                 <div className="gallery">
                   <div className="phone"><img loading="lazy" src="assets/drv-earnings.jpg" width="540" height="1178" alt="شاشة الأرباح في تطبيق السائق" /></div>
@@ -254,12 +267,33 @@ export default function App() {
                 <h2>ابدأ رحلتك مع وصّل اليوم</h2>
                 <p>حمّل التطبيق واحجز أول رحلة أو اطلب أول توصيل في دقائق.</p>
                 <div className="stores">
-                              <a className="store primary" href="#download"><small>متوفر على</small><b>Google Play</b></a>
+                              <a className="store primary" href={STORE.rider} target="_blank" rel="noopener noreferrer"><small>تطبيق الراكب على</small><b>Google Play</b></a>
+                  <a className="store" href={STORE.driver} target="_blank" rel="noopener noreferrer"><small>تطبيق السائق على</small><b>Google Play</b></a>
                 </div>
               </div>
             </div>
           </section>
         </main>
+
+        {pick && (
+          <div className="modal" role="presentation" onClick={() => setPick(false)}>
+            <div className="modal-card" role="dialog" aria-modal="true" aria-labelledby="pick-title" onClick={(e) => e.stopPropagation()}>
+              <button type="button" className="modal-x" aria-label="إغلاق" onClick={() => setPick(false)}>×</button>
+              <h2 id="pick-title">اختر التطبيق</h2>
+              <p>حمّل التطبيق المناسب لك من Google Play.</p>
+              <div className="pick-list">
+                <a className="pick" href={STORE.rider} target="_blank" rel="noopener noreferrer">
+                  <span className="pick-t"><b>تطبيق الراكب</b><small>اطلب رحلتك أو توصيلك</small></span>
+                  <span className="pick-go">Google Play ↗</span>
+                </a>
+                <a className="pick" href={STORE.driver} target="_blank" rel="noopener noreferrer">
+                  <span className="pick-t"><b>تطبيق السائق</b><small>اربح من رحلاتك وتوصيلاتك</small></span>
+                  <span className="pick-go">Google Play ↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
       
         <footer>
           <div className="wrap foot">
