@@ -126,7 +126,7 @@ export default function App() {
                 <p className="lead">احجز رحلتك أو اطلب توصيلك في خطوات بسيطة، وتابع السائق لحظة بلحظة حتى الوصول.</p>
                 <div className="cta-row">
                   <button type="button" className="btn btn-primary" onClick={() => setPick(true)}>حمّل التطبيق مجاناً</button>
-                  <a className="btn btn-quiet" href="#apps" onClick={() => setTab('captain')}>انضم كسائق</a>
+                  <a className="btn btn-quiet" href={STORE.driver} target="_blank" rel="noopener noreferrer">انضم كسائق</a>
                 </div>
                 <div className="story" role="tablist" aria-label="جولة سريعة في التطبيق">
                   <button key={story === 0 ? 'on0-' + tick : 'off0'} className={`st${story === 0 ? ' on' : ''}`} role="tab" aria-selected={story === 0} aria-label="اطلب رحلتك" onClick={() => goStory(0)}><i></i></button>
